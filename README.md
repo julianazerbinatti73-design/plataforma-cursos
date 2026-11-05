@@ -1,5 +1,4 @@
 # Plataforma de Cursos — API RESTful
-
 ## Sobre o projeto
 
 Projeto Final Integrador da disciplina Programação Back-End 1 (PBE1).
@@ -154,8 +153,8 @@ Os dados são armazenados em arrays JavaScript e permanecem disponíveis somente
 
 Projeto desenvolvido em dupla para a disciplina PBE1.
 
-* Integrante 1: Nome do integrante
-* Integrante 2: Nome do integrante
+* Integrante 1: Juliana Zerbinatti Sendon Garrido n°18
+* Integrante 2: Julia Souza Zampieri n°17
 
 ## Objetivo
 
