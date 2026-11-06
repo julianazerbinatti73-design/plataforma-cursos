@@ -26,7 +26,6 @@ function listarCursos(req, res) {
 
 function buscarCurso(req, res) {
     const id = Number(req.params.id);
-
     const curso = cursos.find(item => item.id === id);
 
     if (!curso) {
@@ -65,9 +64,28 @@ function cadastrarCurso(req, res) {
     });
 }
 
+function validarAtualizacao(dados) {
+    const {
+        nome,
+        descricao,
+        carga_horaria,
+        categoria,
+        instrutor,
+        ativo
+    } = dados;
+
+    return !(
+        (nome !== undefined && (typeof nome !== "string" || !nome.trim())) ||
+        (descricao !== undefined && (typeof descricao !== "string" || !descricao.trim())) ||
+        (categoria !== undefined && (typeof categoria !== "string" || !categoria.trim())) ||
+        (instrutor !== undefined && (typeof instrutor !== "string" || !instrutor.trim())) ||
+        (carga_horaria !== undefined && (!Number.isInteger(carga_horaria) || carga_horaria <= 0)) ||
+        (ativo !== undefined && typeof ativo !== "boolean")
+    );
+}
+
 function atualizarCurso(req, res) {
     const id = Number(req.params.id);
-
     const curso = cursos.find(item => item.id === id);
 
     if (!curso) {
@@ -76,23 +94,7 @@ function atualizarCurso(req, res) {
         });
     }
 
-    const {
-        nome,
-        descricao,
-        carga_horaria,
-        categoria,
-        instrutor,
-        ativo
-    } = req.body;
-
-    if (
-        (nome !== undefined && (typeof nome !== "string" || !nome.trim())) ||
-        (descricao !== undefined && (typeof descricao !== "string" || !descricao.trim())) ||
-        (categoria !== undefined && (typeof categoria !== "string" || !categoria.trim())) ||
-        (instrutor !== undefined && (typeof instrutor !== "string" || !instrutor.trim())) ||
-        (carga_horaria !== undefined && (!Number.isInteger(carga_horaria) || carga_horaria <= 0)) ||
-        (ativo !== undefined && typeof ativo !== "boolean")
-    ) {
+    if (!validarAtualizacao(req.body)) {
         return res.status(400).json({
             erro: "Dados de atualizacao invalidos."
         });
@@ -102,6 +104,46 @@ function atualizarCurso(req, res) {
 
     return res.status(200).json({
         mensagem: "Curso atualizado com sucesso.",
+        curso
+    });
+}
+
+function atualizarParcialCurso(req, res) {
+    const id = Number(req.params.id);
+    const curso = cursos.find(item => item.id === id);
+
+    if (!curso) {
+        return res.status(404).json({
+            erro: "Curso nao encontrado."
+        });
+    }
+
+    const camposPermitidos = [
+        "nome",
+        "descricao",
+        "carga_horaria",
+        "categoria",
+        "instrutor",
+        "ativo"
+    ];
+
+    const dados = req.body;
+    const camposRecebidos = Object.keys(dados);
+
+    if (
+        camposRecebidos.length === 0 ||
+        camposRecebidos.some(campo => !camposPermitidos.includes(campo)) ||
+        !validarAtualizacao(dados)
+    ) {
+        return res.status(400).json({
+            erro: "Dados de atualizacao invalidos."
+        });
+    }
+
+    Object.assign(curso, dados);
+
+    return res.status(200).json({
+        mensagem: "Curso atualizado parcialmente com sucesso.",
         curso
     });
 }
@@ -139,6 +181,7 @@ module.exports = {
     buscarCurso,
     cadastrarCurso,
     atualizarCurso,
+    atualizarParcialCurso,
     excluirCurso
 };
 

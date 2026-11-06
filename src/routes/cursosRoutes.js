@@ -9,7 +9,9 @@ router.get("/", cursosController.listarCursos);
 router.get("/:id", cursosController.buscarCurso);
 router.post("/", validarCurso, cursosController.cadastrarCurso);
 router.put("/:id", cursosController.atualizarCurso);
+router.patch("/:id", cursosController.atualizarParcialCurso);
 router.delete("/:id", cursosController.excluirCurso);
 
 module.exports = router;
+
 
