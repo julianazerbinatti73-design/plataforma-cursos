@@ -148,22 +148,27 @@ kill PID
 Execução dos curls (requisições):
 
 1. POST — Cadastra um novo curso e guarda automaticamente o ID para os próximos comandos.
+   
 curl -sS -X POST http://localhost:3018/api/cursos -H "Content-Type: application/json" -d '{"nome":"Curso Teste","descricao":"Curso para testes","carga_horaria":40,"categoria":"Programacao","instrutor":"Carlos Silva"}' | tee /tmp/curso_resposta.json | jq '.'; CURSO_ID=$(jq -r '.curso.id' /tmp/curso_resposta.json); echo "ID do curso: $CURSO_ID"
 
 
 2. GET — Consulta todos os cursos cadastrados.
+
 curl -i http://localhost:3018/api/cursos
 
 
 3. PUT — Atualiza todos os dados do curso.
+   
 curl -i -X PUT http://localhost:3018/api/cursos/$CURSO_ID -H "Content-Type: application/json" -d '{"nome":"Curso Atualizado","descricao":"Curso atualizado completo","carga_horaria":50,"categoria":"Programacao","instrutor":"Carlos Silva"}'
 
 
 4. PATCH — Atualiza somente o nome do curso.
+   
 curl -i -X PATCH http://localhost:3018/api/cursos/$CURSO_ID -H "Content-Type: application/json" -d '{"nome":"Curso Atualizado via PATCH"}'
 
 
 5. DELETE — Exclui o curso cadastrado.
+    
 curl -i -X DELETE http://localhost:3018/api/cursos/$CURSO_ID
 
 
