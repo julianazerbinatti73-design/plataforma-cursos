@@ -9,6 +9,7 @@ router.get("/", matriculasController.listarMatriculas);
 router.get("/:id", matriculasController.buscarMatricula);
 router.post("/", validarMatricula, matriculasController.cadastrarMatricula);
 router.put("/:id", matriculasController.atualizarMatricula);
+router.patch("/:id", matriculasController.atualizarMatricula);
 router.delete("/:id", matriculasController.excluirMatricula);
 
 module.exports = router;

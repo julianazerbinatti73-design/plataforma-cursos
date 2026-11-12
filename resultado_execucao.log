@@ -1,6 +1,6 @@
 ==========================================
  TESTES AUTOMATIZADOS - PLATAFORMA CURSOS
- Data: sex 06 nov 2026 12:53:34 -03
+ Data: qui 12 nov 2026 11:39:49 -03
 ==========================================
 ========== TESTES DE CURSOS ==========
 [APROVADO] Cadastrar curso - HTTP 201
@@ -10,6 +10,7 @@
 [APROVADO] Pesquisar cursos por nome - HTTP 200
 [APROVADO] Validar cadastro de curso - HTTP 400
 [APROVADO] Atualizar curso - HTTP 200
+[APROVADO] Atualizar parcialmente curso - HTTP 200
 [APROVADO] Validar atualizacao de curso - HTTP 400
 ========== TESTES DE MATRICULAS ==========
 [APROVADO] Cadastrar matricula - HTTP 201
@@ -20,6 +21,7 @@
 [APROVADO] Filtrar por status - HTTP 200
 [APROVADO] Validar cadastro de matricula - HTTP 400
 [APROVADO] Atualizar matricula - HTTP 200
+[APROVADO] Atualizar parcialmente matricula - HTTP 200
 [APROVADO] Validar atualizacao de matricula - HTTP 400
 [APROVADO] Excluir matricula - HTTP 200
 [APROVADO] Verificar matricula excluida - HTTP 404
@@ -28,8 +30,8 @@
 [APROVADO] Verificar curso excluido - HTTP 404
 [APROVADO] Verificar rota inexistente - HTTP 404
 ==========================================
-TOTAL: 22
-APROVADOS: 22
+TOTAL: 24
+APROVADOS: 24
 REPROVADOS: 0
 ==========================================
 RESULTADO: TODOS OS TESTES APROVADOS

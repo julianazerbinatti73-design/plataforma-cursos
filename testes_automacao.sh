@@ -87,6 +87,9 @@ requisicao PUT "/api/cursos/$CURSO_ID" '{
 }'
 verificar "Atualizar curso" 200
 
+requisicao PATCH "/api/cursos/$CURSO_ID" '{"nome":"Curso Atualizado via PATCH"}'
+verificar "Atualizar parcialmente curso" 200
+
 requisicao PUT "/api/cursos/$CURSO_ID" '{"carga_horaria":-10}'
 verificar "Validar atualizacao de curso" 400
 
@@ -131,6 +134,9 @@ verificar "Validar cadastro de matricula" 400
 requisicao PUT "/api/matriculas/$MATRICULA_ID" '{"status":"concluida"}'
 verificar "Atualizar matricula" 200
 
+requisicao PATCH "/api/matriculas/$MATRICULA_ID" '{"status":"ativa"}'
+verificar "Atualizar parcialmente matricula" 200
+
 requisicao PUT "/api/matriculas/$MATRICULA_ID" '{"status":"invalida"}'
 verificar "Validar atualizacao de matricula" 400
 
@@ -166,3 +172,4 @@ else
     echo "RESULTADO: EXISTEM FALHAS" | tee -a "$LOG"
     exit 1
 fi
+
