@@ -145,6 +145,8 @@ Encerrar processo:
 kill PID
 ```
 -------------------------------
+Exercício 1:
+
 Execução dos curls (requisições):
 
 1. POST — Cadastra um novo curso e guarda automaticamente o ID para os próximos comandos.
@@ -173,6 +175,20 @@ curl -i -X DELETE http://localhost:3018/api/cursos/$CURSO_ID
 
 
 Executar na ordem, no mesmo terminal, com o servidor rodando na porta 3018.
+----------------------------------------------
+Exercício 2:
+1. Iniciar o servidor:
+npm start
+
+
+2. Abrir outro terminal, entrar na pasta do projeto e executar:
+./testes_automacao.sh
+
+----------------------------------------------
+Exercício 3:
+fuser -k 3018/tcp
+
+----------------------------------------------
 
 ## Observação
 
